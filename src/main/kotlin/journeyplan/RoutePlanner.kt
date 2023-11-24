@@ -40,7 +40,6 @@ class Route(val segment_list: List<Segment>) {
     return total_time
   }
 
-
   fun numChanges(): Int {
     var counter = 0
     var recentLine = segment_list.first().line
@@ -55,10 +54,18 @@ class Route(val segment_list: List<Segment>) {
 
   override fun toString(): String {
     var journey =
-      " ${segment_list.first().station1.name} to ${segment_list.last().station2.name} - ${duration()} minutes, ${numChanges()} changes\n"
+      "${segment_list.first().station1.name} to ${segment_list.last().station2.name} - ${duration()} minutes, ${numChanges()} changes\n"
+    val recentLine = segment_list.first().line
     for (i in segment_list) {
-      journey += "- ${i.station1.name} to ${i.station2.name} by ${i.line.name}\n"
+      if (recentLine != i.line) {
+        journey += " - ${i.station1} to ${i.station2} by ${i.line}\n"
+      }
     }
     return journey
   }
+}
+
+fun main() {
+  val map = londonUnderground()
+  println(map.routesFrom(map.segment_list.first().station1, map.segment_list.last().station2))
 }

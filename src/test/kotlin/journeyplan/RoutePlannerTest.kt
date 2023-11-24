@@ -1,25 +1,25 @@
 package journeyplan
 
- import org.junit.Test
- import kotlin.test.assertEquals
+import org.junit.Test
+import kotlin.test.assertEquals
 
 class RoutePlannerTest {
 
-  val northernLine = Line("Northern")
-  val victoriaLine = Line("Victoria")
-  val centralLine = Line("Central")
+  private val northernLine = Line("Northern")
+  private val victoriaLine = Line("Victoria")
+  private val centralLine = Line("Central")
 
-  val highgate = Station("Highgate")
-  val archway = Station("Archway")
-  val tufnellPark = Station("Tufnell Park")
-  val kentishTown = Station("Kentish Town")
-  val camden = Station("Camden Town")
-  val euston = Station("Euston")
-  val warrenStreet = Station("Warren Street")
-  val oxfordCircus = Station("Oxford Circus")
-  val bondStreet = Station("Bond Street")
+  private val highgate = Station("Highgate")
+  private val archway = Station("Archway")
+  private val tufnellPark = Station("Tufnell Park")
+  private val kentishTown = Station("Kentish Town")
+  private val camden = Station("Camden Town")
+  private val euston = Station("Euston")
+  private val warrenStreet = Station("Warren Street")
+  private val oxfordCircus = Station("Oxford Circus")
+  private val bondStreet = Station("Bond Street")
 
-  val tufnellParkToHighgate =
+  private val tufnellParkToHighgate =
     Route(
       listOf(
         Segment(tufnellPark, archway, northernLine, 3),
@@ -27,7 +27,7 @@ class RoutePlannerTest {
       )
     )
 
-  val highgateToOxfordCircus =
+  private val highgateToOxfordCircus =
     Route(
       listOf(
         Segment(highgate, archway, northernLine, 3),
@@ -39,7 +39,7 @@ class RoutePlannerTest {
       )
     )
 
-  val camdenToBondStreet =
+  private val camdenToBondStreet =
     Route(
       listOf(
         Segment(camden, euston, northernLine, 3),

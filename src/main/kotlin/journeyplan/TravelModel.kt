@@ -7,7 +7,7 @@ class Station(val name: String) {
   }
 }
 
-class Line(val name: String) {
+class Line(private val name: String) {
   override fun toString(): String {
     return "$name Line"
   }

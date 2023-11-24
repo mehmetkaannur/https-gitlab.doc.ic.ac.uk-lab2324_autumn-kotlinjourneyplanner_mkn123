@@ -53,13 +53,29 @@ class Route(val segment_list: List<Segment>) {
   }
 
   override fun toString(): String {
-    var journey =
-      "${segment_list.first().station1.name} to ${segment_list.last().station2.name} - ${duration()} minutes, ${numChanges()} changes\n"
-    val recentLine = segment_list.first().line
+    val origin: String = segment_list.first().station1.name
+    val dest: String = segment_list.last().station2.name
+
+    val fromTo = "$origin to $dest - ${duration()} minutes, ${numChanges()} changes"
+    var journey = "$fromTo\n"
+
+    val lineRecent = segment_list.first().line
+    var stinit = segment_list.first().st1
+    var prevpath = segment_list.first()
+
+
     for (i in segment_list) {
-      if (recentLine != i.line) {
-        journey += " - ${i.station1} to ${i.station2} by ${i.line}\n"
+
+      if (segment_list.last().station2 == i.station2) {
+        journey += " - $stinit to ${i.st2} by ${prevpath.line}"
+
       }
+      else if (lineRecent != i.line) {
+
+        journey += " - $stinit to ${i.st1} by ${prevpath.line}\n"
+        stinit = i.st1
+      }
+      prevpath = i
     }
     return journey
   }
